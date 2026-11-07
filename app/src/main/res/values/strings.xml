@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Luft Zeichnen</string>
+    <string name="hint_two_hands">Halte beide Hände vor die Kamera ✋ 🤚</string>
+    <string name="hint_one_hand">Noch die zweite Hand!</string>
+    <string name="hint_loading">Kamera startet …</string>
+    <string name="no_permission">Ohne Kamera-Erlaubnis geht es leider nicht.\nBitte in den Einstellungen erlauben.</string>
+    <string name="photo_saved">Foto gespeichert: %1$s</string>
+    <string name="video_saved">Video gespeichert: %1$s</string>
+    <string name="save_failed">Speichern fehlgeschlagen</string>
+    <string name="record_failed">Aufnahme konnte nicht starten: %1$s</string>
+    <string name="tracker_failed">Handerkennung konnte nicht starten: %1$s</string>
+    <string name="tap_hint">Tippen = Knöpfe aus/ein</string>
+</resources>

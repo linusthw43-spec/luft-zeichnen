@@ -1,0 +1,45 @@
+name: APK bauen
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: APK bauen
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --stacktrace
+          cp app/build/outputs/apk/release/app-release.apk LuftZeichnen.apk
+
+      - name: APK als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: LuftZeichnen-apk
+          path: LuftZeichnen.apk
+
+      - name: Release mit APK erstellen
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Luft Zeichnen – Build ${{ github.run_number }}
+          target_commitish: ${{ github.sha }}
+          make_latest: true
+          files: LuftZeichnen.apk
+          body: |
+            Lade **LuftZeichnen.apk** unten bei „Assets“ herunter und installiere sie auf deinem Android-Handy.
+            (Branch: ${{ github.ref_name }}, Commit: ${{ github.sha }})
